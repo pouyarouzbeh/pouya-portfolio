@@ -211,65 +211,86 @@ export default function Hero() {
         <AnimatePresence>
           {complete ? (
             <motion.div
-              className="glass-panel rounded-2xl p-6 sm:p-8"
+              className="glass-panel relative overflow-hidden rounded-2xl p-6 sm:p-8"
               initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
-              <div className="mb-6 flex items-center gap-4">
-                <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] shadow-cyan">
-                  <Image
-                    src={profile.avatar}
-                    alt={profile.name}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                    priority
-                  />
+              <div
+                className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-electric/70 to-transparent"
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-cyan-electric/10 blur-3xl"
+                aria-hidden="true"
+              />
+
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-xs text-cyan-electric">
+                  <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.65)]" />
+                  available for selected frontend work
                 </div>
-                <div className="min-w-0">
-                  <p className="font-mono text-sm text-cyan-electric">available for selected frontend work</p>
-                  <h1 className="mt-2 text-4xl font-black text-balance text-[rgb(var(--foreground))] sm:text-5xl">
+
+                <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:h-32 sm:w-32">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
+                  <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
+                    <Image
+                      src={profile.avatar}
+                      alt={profile.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                <div className="mx-auto max-w-xl">
+                  <h1 className="text-balance text-3xl font-black leading-tight text-[rgb(var(--foreground))] sm:text-4xl xl:text-[2.65rem]">
                     {profile.name}
                   </h1>
+                  <p className="mx-auto mt-4 max-w-md text-base font-semibold leading-7 text-[rgb(var(--foreground))] sm:text-lg">
+                    {profile.role}
+                  </p>
                 </div>
-              </div>
 
-              <p className="text-lg font-semibold text-[rgb(var(--foreground))] sm:text-xl">{profile.role}</p>
-              <p className="mt-4 max-w-xl text-base leading-8 text-[rgb(var(--muted))]">{profile.tagline}</p>
+                <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#projects"
-                  className="focus-ring group inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-electric px-5 py-3 text-sm font-bold text-ink-950 shadow-cyan"
-                >
-                  View projects
-                  <motion.span
-                    className="inline-flex"
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                <p className="mx-auto max-w-lg text-base leading-8 text-[rgb(var(--muted))]">{profile.tagline}</p>
+
+                <div className="mt-8 grid w-full gap-3 sm:grid-cols-3">
+                  <a
+                    href="#projects"
+                    className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-electric px-5 py-3 text-sm font-bold text-ink-950 shadow-cyan transition-transform hover:-translate-y-0.5 sm:col-span-3 xl:col-span-1"
                   >
-                    <ArrowRight size={18} />
-                  </motion.span>
-                </a>
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-colors hover:border-cyan-electric/40 hover:text-cyan-electric"
-                >
-                  <Github size={18} />
-                  GitHub
-                </a>
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-colors hover:border-purple-deep/50 hover:text-purple-300"
-                >
-                  <Linkedin size={18} />
-                  LinkedIn
-                </a>
+                    View projects
+                    <motion.span
+                      className="inline-flex"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ArrowRight size={18} />
+                    </motion.span>
+                  </a>
+                  <a
+                    href={profile.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-cyan-electric/40 hover:text-cyan-electric"
+                  >
+                    <Github size={18} />
+                    GitHub
+                  </a>
+                  <a
+                    href={profile.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-purple-deep/50 hover:text-purple-300"
+                  >
+                    <Linkedin size={18} />
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </motion.div>
           ) : null}
