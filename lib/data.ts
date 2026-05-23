@@ -11,15 +11,16 @@ export type Stat = {
 };
 
 export type SkillGroup = "Core" | "Frameworks" | "Styling" | "Progressive";
+export type SkillIcon = "atom" | "braces" | "code" | "component" | "layers" | "layout" | "rocket" | "smartphone" | "terminal" | "wind";
 
 export type Skill = {
   name: string;
   group: SkillGroup;
-  level: number;
   description: string;
   projects: number;
   color: string;
-  icon: string;
+  icon: SkillIcon;
+  focus: string[];
   span: "standard" | "wide" | "tall";
 };
 
@@ -52,7 +53,6 @@ export type Project = {
 
 export const profile = {
   name: "Pouya Rouzbeh Tehrani",
-  initials: "PRT",
   role: "Frontend Developer - React & Next.js Specialist",
   tagline:
     "I build polished, fast, and maintainable interfaces for SaaS products, education systems, and international business websites.",
@@ -118,101 +118,101 @@ export const skills: Skill[] = [
   {
     name: "HTML5",
     group: "Core",
-    level: 95,
     description: "Semantic, accessible markup",
     projects: 10,
     color: "#f97316",
     icon: "code",
+    focus: ["Semantic structure", "SEO markup", "Accessible flows"],
     span: "standard"
   },
   {
     name: "CSS3",
     group: "Core",
-    level: 93,
     description: "Animations, Grid, Flexbox",
     projects: 10,
     color: "#38bdf8",
     icon: "layers",
+    focus: ["Responsive layouts", "Motion systems", "Visual polish"],
     span: "wide"
   },
   {
     name: "JavaScript",
     group: "Core",
-    level: 90,
     description: "ES6+, async/await, DOM API",
     projects: 9,
     color: "#facc15",
     icon: "terminal",
+    focus: ["Async flows", "State logic", "Browser APIs"],
     span: "standard"
   },
   {
     name: "React.js",
     group: "Frameworks",
-    level: 90,
     description: "Hooks, Context, performance optimization",
     projects: 8,
     color: "#00d4ff",
     icon: "atom",
+    focus: ["Reusable UI", "Hooks", "Performance"],
     span: "tall"
   },
   {
     name: "Next.js",
     group: "Frameworks",
-    level: 82,
     description: "SSR, SSG, App Router, SEO",
     projects: 4,
     color: "#ffffff",
     icon: "rocket",
+    focus: ["App Router", "SEO", "Deployment"],
     span: "wide"
   },
   {
     name: "TypeScript",
     group: "Frameworks",
-    level: 80,
     description: "Type-safe, scalable codebases",
     projects: 5,
     color: "#60a5fa",
     icon: "braces",
+    focus: ["Typed models", "Safer refactors", "API contracts"],
     span: "standard"
   },
   {
     name: "Tailwind CSS",
     group: "Styling",
-    level: 92,
     description: "Utility-first, rapid UI",
     projects: 7,
     color: "#22d3ee",
-    icon: "sparkles",
+    icon: "wind",
+    focus: ["Design tokens", "Fast iteration", "Adaptive UI"],
     span: "wide"
   },
   {
     name: "Bootstrap",
     group: "Styling",
-    level: 88,
     description: "Responsive grid systems",
     projects: 6,
     color: "#a78bfa",
     icon: "layout",
+    focus: ["Grid systems", "Rapid prototypes", "Legacy UI"],
     span: "standard"
   },
   {
     name: "MUI",
     group: "Styling",
-    level: 75,
     description: "Material Design components",
     projects: 3,
     color: "#38bdf8",
     icon: "component",
+    focus: ["Admin panels", "Theme setup", "Form UI"],
     span: "standard"
   },
   {
     name: "PWA",
     group: "Progressive",
-    level: 70,
     description: "Offline-first, installable apps",
     projects: 2,
     color: "#34d399",
     icon: "smartphone",
+    focus: ["App-like UX", "Offline states", "Mobile polish"],
     span: "standard"
   }
 ];

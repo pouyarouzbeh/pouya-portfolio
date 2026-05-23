@@ -1,18 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
+import localFont from "next/font/local";
 import { profile } from "@/lib/data";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: [
+    {
+      path: "../public/font/Inter-VariableFont_opsz,wght.ttf",
+      weight: "100 900",
+      style: "normal"
+    },
+    {
+      path: "../public/font/Inter-Italic-VariableFont_opsz,wght.ttf",
+      weight: "100 900",
+      style: "italic"
+    }
+  ],
   variable: "--font-inter",
-  display: "swap"
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
   display: "swap"
 });
 
@@ -56,7 +60,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#050a0f",
-  colorScheme: "dark light",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1
 };
@@ -67,22 +71,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <Script id="theme-bootstrap" strategy="beforeInteractive">
-          {`
-            try {
-              const stored = localStorage.getItem('theme');
-              const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-              const useLight = stored ? stored === 'light' : prefersLight === true;
-              document.documentElement.classList.toggle('light', useLight);
-              document.documentElement.classList.toggle('dark', !useLight);
-              document.documentElement.dataset.theme = useLight ? 'light' : 'dark';
-            } catch (_) {
-              document.documentElement.dataset.theme = 'dark';
-            }
-          `}
-        </Script>
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

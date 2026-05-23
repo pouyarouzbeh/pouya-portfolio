@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowDown, ArrowRight, Github, Linkedin, Sparkles } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { ArrowDown, ArrowRight, Github, Linkedin } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { heroCodeLines, profile } from "@/lib/data";
 
 function tokenize(line: string) {
@@ -117,7 +117,7 @@ export default function Hero() {
         });
         setCharIndex((current) => current + 1);
       },
-      lineIsDone ? 115 : 18 + ((charIndex * 17 + lineIndex * 23) % 42)
+      lineIsDone ? 45 : 6 + ((charIndex * 17 + lineIndex * 23) % 16)
     );
 
     return () => window.clearTimeout(timeout);
@@ -136,7 +136,7 @@ export default function Hero() {
         aria-hidden="true"
       />
       <motion.div
-        className="absolute bottom-[-18%] right-[-18%] -z-10 h-[30rem] w-[58rem] rounded-[42%] bg-purple-deep/12 blur-3xl"
+        className="absolute bottom-[-18%] right-[-18%] -z-10 h-[30rem] w-[58rem] rounded-[42%] bg-purple-deep/[0.12] blur-3xl"
         animate={{ x: [0, -28, 14, 0], y: [0, -18, -30, 0], opacity: [0.2, 0.32, 0.22, 0.2] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
@@ -179,12 +179,11 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
               <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+              <span className="h-3 w-3 rounded-full bg-emerald-300" />
             </div>
-            <div className="hidden rounded-full border border-white/[0.07] px-4 py-1 font-mono text-xs text-slate-400 sm:block">
+            <div className="hidden rounded-full border border-white/[0.07] px-4 py-1 font-mono text-xs text-[rgb(var(--muted))] sm:block">
               app/portfolio.tsx
             </div>
-            <Sparkles size={16} className="text-cyan-electric" />
           </div>
 
           <div className="border-b border-white/[0.07] bg-ink-900/70 px-4 py-2">
@@ -193,8 +192,8 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="relative min-h-[27rem] overflow-hidden bg-[#071019]/88 p-4 sm:p-6">
-            <div className="absolute inset-y-0 left-0 w-12 border-r border-white/[0.04] bg-white/[0.02]" />
+          <div className="relative min-h-[27rem] overflow-hidden bg-ink-950/90 p-4 sm:p-6">
+            <div className="absolute inset-y-0 left-0 w-12 border-r border-white/[0.05] bg-white/[0.02]" />
             <div className="relative z-10 space-y-1">
               {Array.from({ length: Math.max(heroCodeLines.length, typedLines.length) }).map((_, index) => (
                 <CodeLine
@@ -208,93 +207,82 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <AnimatePresence>
-          {complete ? (
-            <motion.div
-              className="glass-panel relative overflow-hidden rounded-2xl p-6 sm:p-8"
-              initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
-            >
-              <div
-                className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-electric/70 to-transparent"
-                aria-hidden="true"
-              />
-              <div
-                className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-cyan-electric/10 blur-3xl"
-                aria-hidden="true"
-              />
+        <motion.div
+          className="glass-panel relative overflow-hidden rounded-2xl p-6 sm:p-8"
+          initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
+        >
+          <div
+            className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-electric/70 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-cyan-electric/10 blur-3xl"
+            aria-hidden="true"
+          />
 
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-xs text-cyan-electric">
-                  <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.65)]" />
-                  available for selected frontend work
-                </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-xs text-cyan-electric">
+              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(var(--success),0.65)]" />
+              available for selected frontend work
+            </div>
 
-                <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:h-32 sm:w-32">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
-                  <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
-                    <Image
-                      src="/pouya.jpg"
-                      alt={profile.name}
-                      fill
-                      sizes="128px"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                <div className="mx-auto max-w-xl">
-                  <h1 className="text-balance text-3xl font-black leading-tight text-[rgb(var(--foreground))] sm:text-4xl xl:text-[2.65rem]">
-                    {profile.name}
-                  </h1>
-                  <p className="mx-auto mt-4 max-w-md text-base font-semibold leading-7 text-[rgb(var(--foreground))] sm:text-lg">
-                    {profile.role}
-                  </p>
-                </div>
-
-                <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
-
-                <p className="mx-auto max-w-lg text-base leading-8 text-[rgb(var(--muted))]">{profile.tagline}</p>
-
-                <div className="mt-8 grid w-full gap-3 sm:grid-cols-3">
-                  <a
-                    href="#projects"
-                    className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-electric px-5 py-3 text-sm font-bold text-ink-950 shadow-cyan transition-transform hover:-translate-y-0.5 sm:col-span-3 xl:col-span-1"
-                  >
-                    View projects
-                    <motion.span
-                      className="inline-flex"
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <ArrowRight size={18} />
-                    </motion.span>
-                  </a>
-                  <a
-                    href={profile.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-cyan-electric/40 hover:text-cyan-electric"
-                  >
-                    <Github size={18} />
-                    GitHub
-                  </a>
-                  <a
-                    href={profile.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-purple-deep/50 hover:text-purple-300"
-                  >
-                    <Linkedin size={18} />
-                    LinkedIn
-                  </a>
-                </div>
+            <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:h-32 sm:w-32">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
+              <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
+                <Image src="/pouya.jpg" alt={profile.name} fill sizes="128px" className="object-cover" priority />
               </div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+            </div>
+
+            <div className="mx-auto max-w-xl">
+              <h1 className="gradient-text select-text text-balance text-3xl font-black leading-tight sm:text-4xl xl:text-[2.65rem]">
+                {profile.name}
+              </h1>
+              <p className="mx-auto mt-4 max-w-md select-text text-base font-semibold leading-7 text-[rgb(var(--foreground))] sm:text-lg">
+                {profile.role}
+              </p>
+            </div>
+
+            <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-subtle/[0.45] to-transparent" />
+
+            <p className="mx-auto max-w-lg select-text text-base leading-8 text-[rgb(var(--muted))]">{profile.tagline}</p>
+
+            <div className="mt-8 grid w-full gap-3 sm:grid-cols-3">
+              <a
+                href="#projects"
+                className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-electric px-5 py-3 text-sm font-bold text-ink-950 shadow-cyan transition-transform hover:-translate-y-0.5 sm:col-span-3 xl:col-span-1"
+              >
+                View projects
+                <motion.span
+                  className="inline-flex"
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight size={18} />
+                </motion.span>
+              </a>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-cyan-electric/40 hover:text-cyan-electric"
+              >
+                <Github size={18} />
+                GitHub
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm font-bold text-[rgb(var(--foreground))] transition-all hover:-translate-y-0.5 hover:border-purple-deep/50 hover:text-purple-300"
+              >
+                <Linkedin size={18} />
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       <motion.a

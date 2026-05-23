@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { profile } from "@/lib/data";
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
@@ -42,14 +41,6 @@ export default function Loader() {
           aria-live="polite"
         >
           <div className="w-full max-w-sm">
-            <motion.div
-              className="mx-auto mb-7 grid h-20 w-20 place-items-center rounded-2xl border border-white/10 bg-white/[0.04] font-mono text-2xl font-bold text-cyan-electric shadow-cyan"
-              initial={{ scale: 0.86, opacity: 0, rotateX: -18 }}
-              animate={{ scale: 1, opacity: 1, rotateX: 0 }}
-              transition={{ type: "spring", stiffness: 140, damping: 18 }}
-            >
-              {profile.initials}
-            </motion.div>
             <motion.p
               className="mb-4 text-center font-mono text-sm text-slate-300"
               initial={{ opacity: 0, y: 10 }}
@@ -67,7 +58,7 @@ export default function Loader() {
               />
             </div>
             <motion.p
-              className="mt-3 text-center font-mono text-xs text-slate-500"
+              className="mt-3 text-center font-mono text-xs text-[rgb(var(--muted))]"
               animate={{ opacity: [0.55, 1, 0.55] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
             >

@@ -16,26 +16,13 @@
   color-scheme: dark;
 }
 
-html.light {
-  --background: 246 249 252;
-  --foreground: 8 17 26;
-  --muted: 71 85 105;
-  --panel: 255 255 255;
-  --panel-strong: 241 245 249;
-  --line: 15 23 42;
-  --primary: 0 133 170;
-  --accent: 109 40 217;
-  --success: 5 150 105;
-  --shadow-color: 15 23 42;
-  color-scheme: light;
-}
-
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7.5rem;
   background: rgb(var(--background));
 }
 
@@ -43,9 +30,10 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(ellipse at 18% 14%, rgba(var(--primary), 0.18), transparent 34rem),
-    radial-gradient(ellipse at 86% 24%, rgba(var(--accent), 0.18), transparent 30rem),
-    linear-gradient(180deg, rgb(var(--background)) 0%, rgba(var(--background), 0.96) 52%, rgb(var(--background)) 100%);
+    radial-gradient(ellipse at 18% 12%, rgba(var(--primary), 0.2), transparent 34rem),
+    radial-gradient(ellipse at 82% 20%, rgba(var(--accent), 0.18), transparent 32rem),
+    radial-gradient(ellipse at 48% 92%, rgba(var(--success), 0.08), transparent 28rem),
+    linear-gradient(180deg, rgb(var(--background)) 0%, rgba(var(--background), 0.98) 46%, rgb(var(--background)) 100%);
   color: rgb(var(--foreground));
 }
 
@@ -62,22 +50,52 @@ body::before {
 
 @keyframes star-drift {
   0% {
-    transform: translate3d(0, -8rem, 0);
+    transform: translate3d(0, -8rem, 0) scale(1);
   }
 
   100% {
-    transform: translate3d(-8rem, 18rem, 0);
+    transform: translate3d(-10rem, 18rem, 0) scale(1.02);
+  }
+}
+
+@keyframes rain-sheet {
+  0% {
+    background-position:
+      0 -40rem,
+      10rem -28rem,
+      -8rem -54rem;
+  }
+
+  100% {
+    background-position:
+      -18rem 46rem,
+      -12rem 58rem,
+      -30rem 42rem;
+  }
+}
+
+@keyframes rain-depth {
+  0% {
+    background-position:
+      12rem -30rem,
+      -16rem -44rem;
+  }
+
+  100% {
+    background-position:
+      -10rem 54rem,
+      -38rem 38rem;
   }
 }
 
 @keyframes star-rain {
   0% {
-    transform: translate3d(0, -42rem, 0) rotate(-18deg);
+    transform: translate3d(0, -46rem, 0) rotate(-18deg);
     opacity: 0;
   }
 
   9% {
-    opacity: 0.72;
+    opacity: 0.8;
   }
 
   86% {
@@ -85,8 +103,21 @@ body::before {
   }
 
   100% {
-    transform: translate3d(-18rem, 46rem, 0) rotate(-18deg);
+    transform: translate3d(-22rem, 50rem, 0) rotate(-18deg);
     opacity: 0;
+  }
+}
+
+@keyframes star-pulse {
+  0%,
+  100% {
+    opacity: 0.58;
+    filter: saturate(1) brightness(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    filter: saturate(1.35) brightness(1.14);
   }
 }
 
@@ -138,19 +169,22 @@ a {
   .rainy-starfield {
     pointer-events: none;
     position: fixed;
-    inset: -18rem;
+    inset: -10rem;
     z-index: 0;
     overflow: hidden;
+    background-color: transparent;
     background:
-      radial-gradient(circle at 12% 18%, rgba(var(--primary), 0.18) 0 0.08rem, transparent 0.1rem),
-      radial-gradient(circle at 26% 72%, rgba(var(--foreground), 0.18) 0 0.07rem, transparent 0.09rem),
-      radial-gradient(circle at 44% 32%, rgba(var(--accent), 0.2) 0 0.08rem, transparent 0.11rem),
-      radial-gradient(circle at 68% 16%, rgba(var(--primary), 0.22) 0 0.07rem, transparent 0.1rem),
-      radial-gradient(circle at 86% 66%, rgba(var(--foreground), 0.16) 0 0.07rem, transparent 0.09rem);
-    background-size: 18rem 18rem, 22rem 22rem, 26rem 26rem, 20rem 20rem, 24rem 24rem;
-    mask-image: radial-gradient(ellipse at center, black 0%, black 62%, transparent 86%);
-    opacity: 0.86;
-    animation: star-drift 18s linear infinite;
+      radial-gradient(ellipse at 18% 12%, rgba(var(--primary), 0.18), transparent 34rem),
+      radial-gradient(ellipse at 78% 18%, rgba(var(--accent), 0.14), transparent 32rem),
+      radial-gradient(circle at 12% 18%, rgba(var(--primary), 0.36) 0 0.08rem, transparent 0.11rem),
+      radial-gradient(circle at 26% 72%, rgba(var(--foreground), 0.28) 0 0.065rem, transparent 0.1rem),
+      radial-gradient(circle at 44% 32%, rgba(var(--accent), 0.28) 0 0.085rem, transparent 0.12rem),
+      radial-gradient(circle at 68% 16%, rgba(var(--primary), 0.34) 0 0.07rem, transparent 0.105rem),
+      radial-gradient(circle at 86% 66%, rgba(var(--foreground), 0.24) 0 0.065rem, transparent 0.1rem),
+      radial-gradient(circle at 58% 84%, rgba(var(--success), 0.2) 0 0.06rem, transparent 0.095rem);
+    background-size: auto, auto, 16rem 16rem, 21rem 21rem, 27rem 27rem, 19rem 19rem, 24rem 24rem, 31rem 31rem;
+    opacity: 1;
+    animation: star-pulse 7.5s ease-in-out infinite;
   }
 
   .rainy-starfield::before,
@@ -165,31 +199,99 @@ a {
 
   .rainy-starfield::before {
     background-image:
-      linear-gradient(90deg, transparent 0 42%, rgba(var(--primary), 0.64) 48%, rgba(var(--foreground), 0.9) 52%, transparent 62%),
-      linear-gradient(90deg, transparent 0 44%, rgba(var(--accent), 0.42) 50%, rgba(var(--primary), 0.44) 56%, transparent 66%);
-    background-size: 26rem 0.12rem, 34rem 0.1rem;
-    background-position: 0 4rem, 11rem 15rem;
-    filter: drop-shadow(0 0 0.55rem rgba(var(--primary), 0.48));
-    animation: star-rain 4.8s linear infinite;
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 5.1rem,
+        rgba(var(--foreground), 0.58) 5.12rem 5.18rem,
+        rgba(var(--primary), 0.48) 5.2rem 5.55rem,
+        transparent 5.7rem 11.2rem
+      ),
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 8.4rem,
+        rgba(var(--primary), 0.42) 8.45rem 8.52rem,
+        rgba(var(--foreground), 0.7) 8.54rem 8.9rem,
+        transparent 9.1rem 17.8rem
+      ),
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 13rem,
+        rgba(var(--accent), 0.34) 13.05rem 13.12rem,
+        rgba(var(--primary), 0.32) 13.14rem 13.42rem,
+        transparent 13.6rem 24rem
+      );
+    background-size: 18rem 42rem, 28rem 54rem, 40rem 64rem;
+    filter: drop-shadow(0 0 0.45rem rgba(var(--primary), 0.46));
+    opacity: 0.82;
+    animation: rain-sheet 1.9s linear infinite;
   }
 
   .rainy-starfield::after {
     background-image:
-      linear-gradient(90deg, transparent 0 38%, rgba(var(--foreground), 0.62) 48%, rgba(var(--accent), 0.52) 55%, transparent 68%),
-      linear-gradient(90deg, transparent 0 44%, rgba(var(--primary), 0.46) 52%, transparent 64%);
-    background-size: 18rem 0.09rem, 29rem 0.08rem;
-    background-position: 8rem 10rem, 2rem 22rem;
-    filter: drop-shadow(0 0 0.5rem rgba(var(--accent), 0.36));
-    opacity: 0.62;
-    animation: star-rain 7.2s linear infinite;
-    animation-delay: -2.7s;
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 6.2rem,
+        rgba(var(--foreground), 0.36) 6.24rem 6.3rem,
+        rgba(var(--primary), 0.28) 6.32rem 6.72rem,
+        transparent 6.9rem 13.8rem
+      ),
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 15rem,
+        rgba(var(--success), 0.24) 15.04rem 15.1rem,
+        rgba(var(--foreground), 0.24) 15.12rem 15.4rem,
+        transparent 15.58rem 28rem
+      );
+    background-size: 24rem 58rem, 44rem 72rem;
+    filter: drop-shadow(0 0 0.35rem rgba(var(--accent), 0.32));
+    opacity: 0.72;
+    animation: rain-depth 3.2s linear infinite;
+  }
+
+  .cursor-ambient {
+    --cursor-x: 50vw;
+    --cursor-y: 50vh;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: none;
+    opacity: 0;
+    background:
+      radial-gradient(38rem circle at var(--cursor-x) var(--cursor-y), rgba(var(--primary), 0.18), transparent 52%),
+      radial-gradient(22rem circle at var(--cursor-x) var(--cursor-y), rgba(var(--accent), 0.14), transparent 58%),
+      radial-gradient(8rem circle at var(--cursor-x) var(--cursor-y), rgba(var(--foreground), 0.08), transparent 62%);
+    filter: saturate(1.2);
+    mix-blend-mode: screen;
+    transition: opacity 180ms ease, filter 220ms ease;
+    will-change: opacity, background;
+  }
+
+  .cursor-ambient.is-visible {
+    opacity: 0.9;
+  }
+
+  .cursor-ambient.is-active {
+    opacity: 1;
+    filter: saturate(1.45) brightness(1.08);
+  }
+
+  @media (min-width: 768px) {
+    .cursor-ambient {
+      display: block;
+    }
   }
 
   .section-shell {
     position: relative;
     z-index: 1;
     width: 100%;
+    scroll-margin-top: 7.5rem;
     padding: 6rem 1rem;
+  }
+
+  #home {
+    scroll-margin-top: 7.5rem;
   }
 
   @media (min-width: 768px) {
@@ -201,6 +303,64 @@ a {
   .section-inner {
     width: min(1120px, 100%);
     margin-inline: auto;
+  }
+
+  .section-heading {
+    position: relative;
+    margin-inline: auto;
+    max-width: 48rem;
+    text-align: center;
+  }
+
+  .section-heading::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.15rem;
+    height: 1px;
+    width: min(18rem, 70vw);
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(var(--primary), 0.72), rgba(var(--accent), 0.48), transparent);
+  }
+
+  .section-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(var(--line), 0.08);
+    border-radius: 999px;
+    background: rgba(var(--panel-strong), 0.46);
+    padding: 0.45rem 0.85rem;
+    color: rgb(var(--primary));
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 0 28px rgba(var(--primary), 0.12);
+  }
+
+  .section-title-premium {
+    margin-top: 1rem;
+    background: linear-gradient(135deg, rgb(var(--foreground)) 12%, rgb(var(--primary)) 48%, rgb(var(--accent)) 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(2.15rem, 4vw, 3.35rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+
+  .section-description-premium {
+    margin: 1rem auto 0;
+    max-width: 38rem;
+    color: rgb(var(--muted));
+    font-size: 1rem;
+    line-height: 1.8;
+    text-wrap: balance;
   }
 
   .glass-panel {

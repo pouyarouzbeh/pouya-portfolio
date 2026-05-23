@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Experience as ExperienceItem, experiences } from "@/lib/data";
+import SectionHeading from "@/components/SectionHeading";
 
 function TimelineCard({ item, index }: { item: ExperienceItem; index: number }) {
   const [expanded, setExpanded] = useState(false);
@@ -22,7 +23,12 @@ function TimelineCard({ item, index }: { item: ExperienceItem; index: number }) 
           onMouseLeave={() => setExpanded(false)}
           onFocus={() => setExpanded(true)}
           onBlur={() => setExpanded(false)}
-          whileHover={{ y: -6, borderColor: item.current ? "rgba(52, 211, 153, 0.34)" : "rgba(0, 212, 255, 0.24)" }}
+          whileHover={{
+            y: -6,
+            borderColor: item.current
+              ? "rgba(var(--success), 0.34)"
+              : "rgba(var(--primary), 0.24)"
+          }}
           tabIndex={0}
         >
           <div className="flex flex-wrap items-center gap-2">
@@ -30,7 +36,7 @@ function TimelineCard({ item, index }: { item: ExperienceItem; index: number }) 
               {item.period}
             </span>
             {item.current ? (
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-300">
                 <motion.span
                   className="h-2 w-2 rounded-full bg-emerald-300"
                   animate={{ scale: [1, 1.6, 1], opacity: [1, 0.45, 1] }}
@@ -87,7 +93,9 @@ function TimelineCard({ item, index }: { item: ExperienceItem; index: number }) 
       <div className="absolute left-0 top-5 hidden h-4 w-4 -translate-x-1/2 rounded-full border border-white/10 bg-[rgb(var(--background))] md:left-1/2 md:block">
         <motion.span
           className="absolute inset-1 rounded-full"
-          style={{ backgroundColor: item.current ? "#34d399" : "#00d4ff" }}
+          style={{
+            backgroundColor: item.current ? "rgb(var(--success))" : "rgb(var(--primary))"
+          }}
           animate={
             item.current
               ? { scale: [1, 1.65, 1], opacity: [1, 0.45, 1] }
@@ -112,16 +120,17 @@ export default function Experience() {
     <section id="experience" className="section-shell">
       <div className="section-inner">
         <motion.div
-          className="mb-12 max-w-3xl"
+          className="mb-12"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <p className="font-mono text-sm text-cyan-electric">experience.timeline</p>
-          <h2 className="mt-4 text-4xl font-black text-balance text-[rgb(var(--foreground))] md:text-5xl">
-            Frontend work across products, education, and international delivery.
-          </h2>
+          <SectionHeading
+            kicker="experience.timeline"
+            title="Experience"
+            description="Products, teaching, and international delivery."
+          />
         </motion.div>
 
         <div ref={ref} className="relative space-y-6 md:space-y-10">

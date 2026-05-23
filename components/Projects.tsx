@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Project, projects } from "@/lib/data";
+import SectionHeading from "@/components/SectionHeading";
 
 function ProjectMockup({ project }: { project: Project }) {
   const rows = project.visual === "commerce" ? 5 : project.visual === "university" ? 4 : 3;
@@ -87,20 +88,25 @@ function ProjectMockup({ project }: { project: Project }) {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [flipped, setFlipped] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const reduceMotion = useReducedMotion();
 
   return (
     <motion.article
-      className="perspective-card min-h-[31rem]"
+      className="perspective-card min-h-[31rem] transform-gpu"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ delay: index * 0.08, duration: 0.55, ease: "easeOut" }}
-      animate={{ x: offset.x, y: offset.y }}
+      transition={{
+        default: { delay: index * 0.08, duration: 0.55, ease: "easeOut" },
+        x: { type: "spring", stiffness: 120, damping: 26, mass: 0.7 },
+        y: { type: "spring", stiffness: 120, damping: 26, mass: 0.7 }
+      }}
+      animate={{ x: reduceMotion ? 0 : offset.x, y: reduceMotion ? 0 : offset.y }}
       onMouseMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         setOffset({
-          x: ((event.clientX - rect.left) / rect.width - 0.5) * 12,
-          y: ((event.clientY - rect.top) / rect.height - 0.5) * 12
+          x: ((event.clientX - rect.left) / rect.width - 0.5) * 5,
+          y: ((event.clientY - rect.top) / rect.height - 0.5) * 5
         });
       }}
       onMouseEnter={() => setFlipped(true)}
@@ -117,11 +123,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       tabIndex={0}
     >
       <motion.div
-        className="preserve-3d relative h-full min-h-[31rem] rounded-2xl"
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="preserve-3d relative h-full min-h-[31rem] rounded-2xl transform-gpu"
+        animate={{ rotateY: flipped ? 180 : 0, scale: flipped && !reduceMotion ? 1.012 : 1 }}
+        transition={{ duration: reduceMotion ? 0.01 : 0.9, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="backface-hidden glass-panel absolute inset-0 flex flex-col rounded-2xl p-4">
+        <div className="backface-hidden glass-panel absolute inset-0 flex transform-gpu flex-col rounded-2xl p-4 [transform:translateZ(1px)]">
           <div className="mb-4 flex items-center justify-between gap-3">
             <div>
               <p className="font-mono text-xs text-cyan-electric">{project.period}</p>
@@ -143,7 +149,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
         </div>
 
-        <div className="backface-hidden rotate-y-180 glass-panel absolute inset-0 flex flex-col rounded-2xl p-6">
+        <div className="backface-hidden rotate-y-180 glass-panel absolute inset-0 flex transform-gpu flex-col rounded-2xl p-6 [transform:rotateY(180deg)_translateZ(1px)]">
           <p className="font-mono text-sm" style={{ color: project.accent }}>
             {project.category}
           </p>
@@ -192,16 +198,17 @@ export default function Projects() {
     <section id="projects" className="section-shell">
       <div className="section-inner">
         <motion.div
-          className="mb-12 max-w-3xl"
+          className="mb-12"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
         >
-          <p className="font-mono text-sm text-cyan-electric">projects.caseStudies</p>
-          <h2 className="mt-4 text-4xl font-black text-balance text-[rgb(var(--foreground))] md:text-5xl">
-            Selected product surfaces shaped as polished case studies.
-          </h2>
+          <SectionHeading
+            kicker="projects.caseStudies"
+            title="Selected Work"
+            description="Product surfaces built with real constraints."
+          />
         </motion.div>
 
         <div className="grid gap-6 lg:grid-cols-2">
