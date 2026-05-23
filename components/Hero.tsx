@@ -235,7 +235,7 @@ export default function Hero() {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
                   <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
                     <Image
-                      src={profile.avatar}
+                      src="/pouya.jpg"
                       alt={profile.name}
                       fill
                       sizes="128px"
