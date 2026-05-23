@@ -1,0 +1,15 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050A0F"/>
+  <rect x="88" y="82" width="1024" height="466" rx="28" fill="#08111A" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M88 144H1112" stroke="rgba(255,255,255,0.1)"/>
+  <circle cx="126" cy="113" r="10" fill="#FF5F57"/>
+  <circle cx="158" cy="113" r="10" fill="#FFBD2E"/>
+  <circle cx="190" cy="113" r="10" fill="#28C840"/>
+  <text x="136" y="236" fill="#00D4FF" font-family="Arial, sans-serif" font-size="54" font-weight="700">Pouya Rouzbeh Tehrani</text>
+  <text x="136" y="305" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="34">Frontend Developer - React &amp; Next.js Specialist</text>
+  <text x="136" y="388" fill="#94A3B8" font-family="monospace" font-size="26">const portfolio = buildAwwwardsExperience();</text>
+  <rect x="136" y="440" width="278" height="54" rx="14" fill="#00D4FF"/>
+  <text x="166" y="475" fill="#031014" font-family="Arial, sans-serif" font-size="22" font-weight="700">React / Next.js</text>
+  <rect x="432" y="440" width="210" height="54" rx="14" fill="#7C3AED"/>
+  <text x="462" y="475" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">Portfolio</text>
+</svg>
