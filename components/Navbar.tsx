@@ -65,7 +65,7 @@ export default function Navbar() {
   };
 
   const navButtonClass =
-    "focus-ring group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-white dark:text-slate-300 dark:hover:text-white light:text-slate-700 light:hover:text-slate-950";
+    "focus-ring group relative overflow-hidden rounded-full px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-white dark:text-slate-300 dark:hover:text-white light:text-slate-700 light:hover:text-slate-950";
 
   return (
     <motion.header
@@ -126,27 +126,38 @@ export default function Navbar() {
               {hoveredSection === section.id ? (
                 <motion.span
                   layoutId="nav-hover-glow"
-                  className="absolute inset-0 rounded-full border border-cyan-electric/30 bg-[linear-gradient(135deg,rgba(0,212,255,0.16),rgba(124,58,237,0.16))] shadow-[0_0_28px_rgba(0,212,255,0.18)]"
+                  className="absolute inset-0 rounded-full border border-white/[0.1] bg-white/[0.055] shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_10px_28px_rgba(0,0,0,0.18)]"
                   transition={{ type: "spring", stiffness: 420, damping: 34 }}
                 />
               ) : null}
               {active === section.id ? (
                 <motion.span
                   layoutId="active-section-pill"
-                  className="absolute inset-0 rounded-full border border-cyan-electric/25 bg-cyan-electric/10"
+                  className="absolute inset-0 rounded-full border border-cyan-electric/30 bg-cyan-electric/[0.12] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_0_24px_rgba(0,212,255,0.16)]"
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}
                 />
               ) : null}
               <motion.span
-                className="absolute bottom-1.5 left-1/2 h-px w-7 -translate-x-1/2 rounded-full bg-cyan-electric"
+                className="absolute inset-y-1 left-0 w-8 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={false}
                 animate={{
-                  opacity: hoveredSection === section.id || active === section.id ? 1 : 0,
-                  scaleX: hoveredSection === section.id || active === section.id ? 1 : 0.28
+                  opacity: hoveredSection === section.id ? 1 : 0,
+                  x: hoveredSection === section.id ? 74 : -34
                 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
+                transition={{ duration: 0.48, ease: "easeOut" }}
               />
-              <span className="relative z-10">{section.label}</span>
+              <span className="relative z-10 inline-flex items-center gap-2">
+                <motion.span
+                  className="h-1.5 w-1.5 rounded-full bg-cyan-electric shadow-cyan"
+                  initial={false}
+                  animate={{
+                    opacity: active === section.id || hoveredSection === section.id ? 1 : 0,
+                    scale: active === section.id || hoveredSection === section.id ? 1 : 0.45
+                  }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                />
+                {section.label}
+              </span>
             </motion.button>
           ))}
         </div>
