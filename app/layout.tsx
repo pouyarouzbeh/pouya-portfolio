@@ -20,8 +20,13 @@ const inter = localFont({
   display: "swap"
 });
 
+const siteUrl =
+  process.env.NODE_ENV === "production" ? "https://pouyarouzbeh.github.io/pouya-portfolio" : profile.siteUrl;
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const ogImageUrl = `${siteUrl}/og-image.svg`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(profile.siteUrl),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${profile.name} | Frontend Developer`,
     template: `%s | ${profile.name}`
@@ -30,17 +35,17 @@ export const metadata: Metadata = {
   authors: [{ name: profile.name, url: profile.linkedin }],
   creator: profile.name,
   alternates: {
-    canonical: "/"
+    canonical: siteUrl
   },
   openGraph: {
     type: "website",
-    url: "/",
+    url: siteUrl,
     title: `${profile.name} | ${profile.role}`,
     description: profile.tagline,
     siteName: `${profile.name} Portfolio`,
     images: [
       {
-        url: "/og-image.svg",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: `${profile.name} portfolio preview`
@@ -51,10 +56,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${profile.name} | ${profile.role}`,
     description: profile.tagline,
-    images: ["/og-image.svg"]
+    images: [ogImageUrl]
   },
   icons: {
-    icon: "/og-image.svg"
+    icon: `${publicBasePath}/og-image.svg`
   }
 };
 

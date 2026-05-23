@@ -6,6 +6,8 @@ import { ArrowDown, ArrowRight, Github, Linkedin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { heroCodeLines, profile } from "@/lib/data";
 
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 function tokenize(line: string) {
   const pattern =
     /(import|from|export|default|function|return|const)|('[^']*')|(<\/?[A-Za-z][\w.]*|\/?>)|([A-Za-z]+(?==))|([{}()[\],.=;])|(\s+)/g;
@@ -231,7 +233,7 @@ export default function Hero() {
             <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:h-32 sm:w-32">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
               <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
-                <Image src="/pouya.jpg" alt={profile.name} fill sizes="128px" className="object-cover" priority />
+                <Image src={`${publicBasePath}/pouya.jpg`} alt={profile.name} fill sizes="128px" className="object-cover" priority />
               </div>
             </div>
 
