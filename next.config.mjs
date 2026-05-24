@@ -1,15 +1,9 @@
-const isProduction = process.env.NODE_ENV === "production";
-const repositoryName = "pouya-portfolio";
-const productionPath = `/${repositoryName}`;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: isProduction ? productionPath : "",
-  assetPrefix: isProduction ? `${productionPath}/` : "",
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProduction ? productionPath : ""
+    NEXT_PUBLIC_BASE_PATH: ""
   },
   images: {
     unoptimized: true,

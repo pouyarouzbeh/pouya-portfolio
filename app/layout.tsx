@@ -20,8 +20,7 @@ const inter = localFont({
   display: "swap"
 });
 
-const siteUrl =
-  process.env.NODE_ENV === "production" ? "https://pouyarouzbeh.github.io/pouya-portfolio" : profile.siteUrl;
+const siteUrl = profile.siteUrl;
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ogImageUrl = `${siteUrl}/og-image.svg`;
 

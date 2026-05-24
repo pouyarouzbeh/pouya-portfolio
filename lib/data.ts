@@ -60,7 +60,7 @@ export const profile = {
   github: "https://github.com/pouyarouzbeh",
   linkedin: "https://www.linkedin.com/in/pouya-rouzbeh-tehrani/",
   avatar: "https://github.com/pouyarouzbeh.png?size=320",
-  siteUrl: "https://pouyarouzbeh.vercel.app"
+  siteUrl: "https://puyaro.ir"
 };
 
 export const navSections: NavSection[] = [
