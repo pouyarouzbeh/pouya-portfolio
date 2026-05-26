@@ -61,28 +61,6 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.35, duration: 0.55, ease: "easeOut" }}
     >
-      <motion.div
-        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-44 border-b border-white/[0.045] backdrop-blur-[36px]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(var(--background), 1) 0%, rgba(var(--background), 0.99) 38%, rgba(var(--background), 0.92) 58%, rgba(var(--background), 0.48) 82%, rgba(var(--background), 0) 100%)"
-        }}
-        initial={false}
-        animate={{ opacity: scrolled ? 1 : 0.9 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        aria-hidden="true"
-      />
-      <motion.div
-        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-28 backdrop-blur-[24px]"
-        style={{
-          maskImage: "linear-gradient(180deg, black 0%, black 62%, transparent 100%)",
-          background: "rgba(var(--background), 0.72)"
-        }}
-        initial={false}
-        animate={{ opacity: scrolled ? 1 : 0.74 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        aria-hidden="true"
-      />
       <nav
         className={`relative z-50 mx-auto grid h-16 w-full max-w-6xl grid-cols-[1fr_auto] items-center gap-3 overflow-hidden rounded-2xl border border-white/[0.08] px-3 shadow-[0_22px_70px_rgba(var(--shadow-color),0.34)] backdrop-blur-[28px] transition-all duration-300 sm:px-4 lg:grid-cols-[1fr_auto_1fr] ${
           scrolled
@@ -101,9 +79,6 @@ export default function Navbar() {
           className="focus-ring group relative z-10 flex min-w-0 items-center gap-3 rounded-xl px-2 py-2"
           aria-label={`Go to ${profile.name} hero section`}
         >
-          <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-cyan-electric/20 bg-cyan-electric/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
-            <span className="h-2.5 w-2.5 rounded-full bg-cyan-electric shadow-cyan" aria-hidden="true" />
-          </span>
           <span className="min-w-0 text-left">
             <span className="block max-w-[10rem] truncate text-sm font-semibold text-[rgb(var(--foreground))] sm:max-w-none">
               {profile.name}

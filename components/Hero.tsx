@@ -225,11 +225,6 @@ export default function Hero() {
           />
 
           <div className="flex flex-col items-center text-center">
-            <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-[11px] text-cyan-electric sm:text-xs">
-              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(var(--success),0.65)]" />
-              available for selected frontend work
-            </div>
-
             <div className="relative mb-5 h-24 w-24 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:mb-6 sm:h-32 sm:w-32">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
               <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">

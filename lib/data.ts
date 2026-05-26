@@ -10,8 +10,8 @@ export type Stat = {
   description: string;
 };
 
-export type SkillGroup = "Core" | "Frameworks" | "Styling" | "Progressive";
-export type SkillIcon = "atom" | "braces" | "code" | "component" | "layers" | "layout" | "rocket" | "smartphone" | "terminal" | "wind";
+export type SkillGroup = "Core" | "Styling";
+export type SkillIcon = "atom" | "braces" | "component" | "layers" | "rocket" | "wind";
 
 export type Skill = {
   name: string;
@@ -102,73 +102,37 @@ export const stats: Stat[] = [
   },
   {
     label: "Technologies",
-    value: 5,
+    value: 6,
     suffix: "+",
-    description: "React, Next.js, TypeScript, Tailwind, MUI"
-  },
-  {
-    label: "Countries",
-    value: 2,
-    suffix: "",
-    description: "Iran and Australia client collaboration"
+    description: "React, Next.js, TypeScript, Tailwind, MUI, Framer Motion"
   }
 ];
 
 export const skills: Skill[] = [
   {
-    name: "HTML5",
-    group: "Core",
-    description: "Semantic, accessible markup",
-    projects: 10,
-    color: "#f97316",
-    icon: "code",
-    focus: ["Semantic structure", "SEO markup", "Accessible flows"],
-    span: "standard"
-  },
-  {
-    name: "CSS3",
-    group: "Core",
-    description: "Animations, Grid, Flexbox",
-    projects: 10,
-    color: "#38bdf8",
-    icon: "layers",
-    focus: ["Responsive layouts", "Motion systems", "Visual polish"],
-    span: "wide"
-  },
-  {
-    name: "JavaScript",
-    group: "Core",
-    description: "ES6+, async/await, DOM API",
-    projects: 9,
-    color: "#facc15",
-    icon: "terminal",
-    focus: ["Async flows", "State logic", "Browser APIs"],
-    span: "standard"
-  },
-  {
     name: "React.js",
-    group: "Frameworks",
-    description: "Hooks, Context, performance optimization",
+    group: "Core",
+    description: "Component architecture, hooks, and product UI state",
     projects: 8,
     color: "#00d4ff",
     icon: "atom",
-    focus: ["Reusable UI", "Hooks", "Performance"],
+    focus: ["Component systems", "Hooks", "Performance"],
     span: "tall"
   },
   {
     name: "Next.js",
-    group: "Frameworks",
-    description: "SSR, SSG, App Router, SEO",
+    group: "Core",
+    description: "App Router, static generation, deployment, and SEO",
     projects: 4,
     color: "#ffffff",
     icon: "rocket",
-    focus: ["App Router", "SEO", "Deployment"],
+    focus: ["App Router", "Static export", "SEO"],
     span: "wide"
   },
   {
     name: "TypeScript",
-    group: "Frameworks",
-    description: "Type-safe, scalable codebases",
+    group: "Core",
+    description: "Typed models, safer refactors, and clearer contracts",
     projects: 5,
     color: "#60a5fa",
     icon: "braces",
@@ -178,27 +142,17 @@ export const skills: Skill[] = [
   {
     name: "Tailwind CSS",
     group: "Styling",
-    description: "Utility-first, rapid UI",
+    description: "Responsive layouts, design tokens, and fast UI iteration",
     projects: 7,
     color: "#22d3ee",
     icon: "wind",
-    focus: ["Design tokens", "Fast iteration", "Adaptive UI"],
+    focus: ["Design tokens", "Responsive UI", "Fast iteration"],
     span: "wide"
-  },
-  {
-    name: "Bootstrap",
-    group: "Styling",
-    description: "Responsive grid systems",
-    projects: 6,
-    color: "#a78bfa",
-    icon: "layout",
-    focus: ["Grid systems", "Rapid prototypes", "Legacy UI"],
-    span: "standard"
   },
   {
     name: "MUI",
     group: "Styling",
-    description: "Material Design components",
+    description: "Admin panels, forms, and practical component systems",
     projects: 3,
     color: "#38bdf8",
     icon: "component",
@@ -206,13 +160,13 @@ export const skills: Skill[] = [
     span: "standard"
   },
   {
-    name: "PWA",
-    group: "Progressive",
-    description: "Offline-first, installable apps",
-    projects: 2,
-    color: "#34d399",
-    icon: "smartphone",
-    focus: ["App-like UX", "Offline states", "Mobile polish"],
+    name: "Framer Motion",
+    group: "Styling",
+    description: "Motion interactions, scroll reveals, and polished transitions",
+    projects: 3,
+    color: "#a78bfa",
+    icon: "layers",
+    focus: ["Micro-interactions", "Scroll reveals", "Reduced motion"],
     span: "standard"
   }
 ];

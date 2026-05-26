@@ -4,13 +4,9 @@ import type { LucideIcon } from "lucide-react";
 import {
   Atom,
   Braces,
-  Code2,
   Component,
   Layers3,
-  LayoutDashboard,
   Rocket,
-  Smartphone,
-  Terminal,
   Wind
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -21,17 +17,13 @@ import SectionHeading from "@/components/SectionHeading";
 const iconMap: Record<Skill["icon"], LucideIcon> = {
   atom: Atom,
   braces: Braces,
-  code: Code2,
   component: Component,
   layers: Layers3,
-  layout: LayoutDashboard,
   rocket: Rocket,
-  smartphone: Smartphone,
-  terminal: Terminal,
   wind: Wind
 };
 
-const groupOrder: SkillGroup[] = ["Core", "Frameworks", "Styling", "Progressive"];
+const groupOrder: SkillGroup[] = ["Core", "Styling"];
 
 function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   const Icon = iconMap[skill.icon];

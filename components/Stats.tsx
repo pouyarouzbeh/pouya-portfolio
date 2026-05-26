@@ -57,7 +57,7 @@ export default function Stats() {
         </motion.div>
 
         <motion.div
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
