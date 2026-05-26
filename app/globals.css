@@ -21,14 +21,19 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 7.5rem;
   background: rgb(var(--background));
 }
 
 body {
+  max-width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse at 18% 12%, rgba(var(--primary), 0.2), transparent 34rem),
     radial-gradient(ellipse at 82% 20%, rgba(var(--accent), 0.18), transparent 32rem),
@@ -157,6 +162,8 @@ a {
   .site-shell {
     isolation: isolate;
     position: relative;
+    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100vh;
   }
 
@@ -169,7 +176,7 @@ a {
   .rainy-starfield {
     pointer-events: none;
     position: fixed;
-    inset: -10rem;
+    inset: -4rem;
     z-index: 0;
     overflow: hidden;
     background-color: transparent;
@@ -185,6 +192,12 @@ a {
     background-size: auto, auto, 16rem 16rem, 21rem 21rem, 27rem 27rem, 19rem 19rem, 24rem 24rem, 31rem 31rem;
     opacity: 1;
     animation: star-pulse 7.5s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .rainy-starfield {
+      inset: -10rem;
+    }
   }
 
   .rainy-starfield::before,

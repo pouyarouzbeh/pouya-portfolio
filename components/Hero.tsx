@@ -49,7 +49,7 @@ function CodeLine({
   number: number;
 }) {
   return (
-    <div className="grid min-h-6 grid-cols-[2rem_1fr] gap-4 font-mono text-[13px] leading-6 text-slate-300 sm:text-sm">
+    <div className="grid min-h-5 grid-cols-[1.6rem_1fr] gap-3 font-mono text-[11px] leading-5 text-slate-300 sm:min-h-6 sm:grid-cols-[2rem_1fr] sm:gap-4 sm:text-sm sm:leading-6">
       <span className="select-none text-right text-slate-600">{number.toString().padStart(2, "0")}</span>
       <span className="whitespace-pre-wrap break-words">
         {tokenize(line).map((part, index) => (
@@ -59,7 +59,7 @@ function CodeLine({
         ))}
         {active ? (
           <motion.span
-            className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-cyan-electric"
+            className="ml-0.5 inline-block h-3 w-1.5 translate-y-0.5 bg-cyan-electric sm:h-4 sm:w-2"
             animate={{ opacity: [1, 0.15, 1] }}
             transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
             aria-hidden="true"
@@ -128,7 +128,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-4 pb-20 pt-28 sm:px-6 lg:pt-24"
+      className="relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:pt-24"
     >
       <div className="absolute inset-0 -z-10 bg-radial-grid bg-[length:260px_260px] opacity-[0.22]" />
       <motion.div
@@ -172,7 +172,7 @@ export default function Hero() {
 
       <div className="section-inner grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr]">
         <motion.div
-          className="glass-panel overflow-hidden rounded-2xl"
+          className="glass-panel order-2 overflow-hidden rounded-2xl lg:order-1"
           initial={{ opacity: 0, y: 40, rotateX: 8 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
@@ -188,14 +188,14 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="border-b border-white/[0.07] bg-ink-900/70 px-4 py-2">
-            <div className="inline-flex rounded-t-xl border border-b-0 border-white/[0.07] bg-ink-950 px-4 py-2 font-mono text-xs text-cyan-electric">
+          <div className="border-b border-white/[0.07] bg-ink-900/70 px-3 py-2 sm:px-4">
+            <div className="inline-flex rounded-t-xl border border-b-0 border-white/[0.07] bg-ink-950 px-3 py-1.5 font-mono text-[11px] text-cyan-electric sm:px-4 sm:py-2 sm:text-xs">
               portfolio.tsx
             </div>
           </div>
 
-          <div className="relative min-h-[27rem] overflow-hidden bg-ink-950/90 p-4 sm:p-6">
-            <div className="absolute inset-y-0 left-0 w-12 border-r border-white/[0.05] bg-white/[0.02]" />
+          <div className="relative min-h-[20rem] overflow-hidden bg-ink-950/90 p-3 sm:min-h-[27rem] sm:p-6">
+            <div className="absolute inset-y-0 left-0 w-10 border-r border-white/[0.05] bg-white/[0.02] sm:w-12" />
             <div className="relative z-10 space-y-1">
               {Array.from({ length: Math.max(heroCodeLines.length, typedLines.length) }).map((_, index) => (
                 <CodeLine
@@ -210,7 +210,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          className="glass-panel relative overflow-hidden rounded-2xl p-6 sm:p-8"
+          className="glass-panel relative order-1 overflow-hidden rounded-2xl p-4 sm:p-8 lg:order-2"
           initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
@@ -225,12 +225,12 @@ export default function Hero() {
           />
 
           <div className="flex flex-col items-center text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-xs text-cyan-electric">
+            <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-cyan-electric/20 bg-cyan-electric/10 px-4 py-2 font-mono text-[11px] text-cyan-electric sm:text-xs">
               <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(var(--success),0.65)]" />
               available for selected frontend work
             </div>
 
-            <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:h-32 sm:w-32">
+            <div className="relative mb-5 h-24 w-24 overflow-hidden rounded-2xl border border-cyan-electric/30 bg-white/[0.04] p-1 shadow-cyan sm:mb-6 sm:h-32 sm:w-32">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-electric/25 via-transparent to-purple-deep/25" />
               <div className="relative h-full w-full overflow-hidden rounded-[0.85rem] bg-ink-950">
                 <Image src={`${publicBasePath}/pouya.jpg`} alt={profile.name} fill sizes="128px" className="object-cover" priority />
@@ -238,19 +238,19 @@ export default function Hero() {
             </div>
 
             <div className="mx-auto max-w-xl">
-              <h1 className="gradient-text select-text text-balance text-3xl font-black leading-tight sm:text-4xl xl:text-[2.65rem]">
+              <h1 className="gradient-text select-text text-balance text-[1.8rem] font-black leading-tight sm:text-4xl xl:text-[2.65rem]">
                 {profile.name}
               </h1>
-              <p className="mx-auto mt-4 max-w-md select-text text-base font-semibold leading-7 text-[rgb(var(--foreground))] sm:text-lg">
+              <p className="mx-auto mt-3 max-w-md select-text text-sm font-semibold leading-6 text-[rgb(var(--foreground))] sm:mt-4 sm:text-lg sm:leading-7">
                 {profile.role}
               </p>
             </div>
 
-            <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-subtle/[0.45] to-transparent" />
+            <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-subtle/[0.45] to-transparent sm:my-6" />
 
-            <p className="mx-auto max-w-lg select-text text-base leading-8 text-[rgb(var(--muted))]">{profile.tagline}</p>
+            <p className="mx-auto max-w-lg select-text text-sm leading-6 text-[rgb(var(--muted))] sm:text-base sm:leading-8">{profile.tagline}</p>
 
-            <div className="mt-8 grid w-full gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid w-full gap-3 sm:mt-8 sm:grid-cols-3">
               <a
                 href="#projects"
                 className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-electric px-5 py-3 text-sm font-bold text-ink-950 shadow-cyan transition-transform hover:-translate-y-0.5 sm:col-span-3 xl:col-span-1"
@@ -289,7 +289,7 @@ export default function Hero() {
 
       <motion.a
         href="#stats"
-        className="focus-ring absolute bottom-6 left-1/2 z-10 grid h-12 w-12 -translate-x-1/2 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-cyan-electric backdrop-blur"
+        className="focus-ring absolute bottom-6 left-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-cyan-electric backdrop-blur sm:grid"
         aria-label="Scroll to stats"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

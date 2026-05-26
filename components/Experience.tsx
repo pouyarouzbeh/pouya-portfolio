@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Experience as ExperienceItem, experiences } from "@/lib/data";
@@ -8,15 +8,26 @@ import SectionHeading from "@/components/SectionHeading";
 
 function TimelineCard({ item, index }: { item: ExperienceItem; index: number }) {
   const [expanded, setExpanded] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const isLeft = index % 2 === 0;
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const updateIsDesktop = () => setIsDesktop(media.matches);
+
+    updateIsDesktop();
+    media.addEventListener("change", updateIsDesktop);
+
+    return () => media.removeEventListener("change", updateIsDesktop);
+  }, []);
 
   return (
     <div className="relative grid gap-4 md:grid-cols-[1fr_4rem_1fr] md:gap-6">
       <div className={isLeft ? "md:col-start-1" : "md:col-start-3"}>
         <motion.article
           className="glass-panel rounded-2xl p-5"
-          initial={{ opacity: 0, x: isLeft ? -44 : 44 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={isDesktop ? { opacity: 0, x: isLeft ? -44 : 44 } : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.58, ease: "easeOut" }}
           onMouseEnter={() => setExpanded(true)}
